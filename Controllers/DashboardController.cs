@@ -29,10 +29,10 @@ namespace Assignment_Form.Controllers
                     using (var command = new MySqlCommand("UPDATE users SET FirstName=@firstname, LastName=@lastname, Gender=@gender, Email=@email WHERE Username=@username", connection))
                     {
                         command.Parameters.AddWithValue("@firstname", model.FirstName);
+                        command.Parameters.AddWithValue("@username", model.Username);
                         command.Parameters.AddWithValue("@lastname", model.LastName);
                         command.Parameters.AddWithValue("@gender", model.Gender);
                         command.Parameters.AddWithValue("@email", model.Email);
-                        command.Parameters.AddWithValue("@username", model.Username);
                         command.ExecuteNonQuery();
                     }
                 }
