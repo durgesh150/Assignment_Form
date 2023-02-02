@@ -1,0 +1,48 @@
+﻿@using Assignment_Form.Models
+@model User
+@{
+    ViewBag.Title = "Displayoneuser";
+
+}
+@section logout{
+    <a href="@Url.Action("Login","Home")" class="btn btn-outline-light">Logout</a>
+}
+
+
+<div class="container">
+    <table class="table table-dark justify-content-center m-5">
+
+        <tr>
+            <th scope="col">Username</th>
+            <td scope="row">@Model.Username</td>
+        </tr>
+        <tr>
+
+            <th scope="col">Full Name</th>
+            <td scope="row">@Model.FirstName @Model.LastName</td>
+        </tr>
+        <tr>
+            <th scope="col">Email</th>
+            <td scope="row">@Model.Email</td>
+        </tr>
+        <tr>
+            <th scope="col">Gender</th>
+            <td scope="row">@Model.Gender</td>
+        </tr>
+        <tr>
+            <th scope="col">Password</th>
+            <td scope="row">@Model.Password</td>
+        </tr>
+        <tr>
+            <th>update</th>
+            <td>    <a href="@Url.Action("UpdateUserDetails","Dashboard",new { Username = @Model.Username })" class="btn btn-outline-warning">Update</a></td>
+        </tr>
+        <tr>
+            <th>Delete</th>
+            <td><a href="@Url.Action("Deleteusers","Dashboard",new { Username = @Model.Username })" class="btn btn-outline-danger">Delete</a></td>
+        </tr>
+
+    </table>
+
+</div>
+

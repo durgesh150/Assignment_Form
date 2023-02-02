@@ -1,0 +1,53 @@
+﻿@using Assignment_Form.Models
+@model MyRestaurantdatabseContext
+@{
+    ViewBag.Title = "Displayusers";
+}
+@section signup{
+    <a href="@Url.Action("login","Home")" class="btn btn-outline-light">Logout</a>
+}
+
+<div class="container">
+    <table class="table table-dark justify-content-center m-5">
+        <thead>
+            <tr>
+                <th scope="col">Username</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Password</th>
+                <th scope="col">Updata</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <h1 class="text-danger">@ViewBag.alert</h1>
+        
+            @foreach (User m in Model.User)
+            {
+
+                <tr>
+                    <th scope="row">@m.Username</th>
+                    <td>@m.FirstName @m.LastName</td>
+                    <td>@m.Email</td>
+                    <td>@m.Gender</td>
+                    <td>@m.Password</td>
+                    <td>
+                        <a href="@Url.Action("UpdateUserDetails","Dashboard",new { Username = m.Username })"class="btn btn-outline-warning">
+                            Edit
+                        </a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Deleteusers","Dashboard",new { Username = m.Username })"class="btn btn-outline-danger">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            
+            }
+
+        </tbody>
+    </table>
+
+</div>
+

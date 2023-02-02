@@ -1,0 +1,90 @@
+﻿@model Assignment_Form.Models.User
+@{
+    ViewBag.Title = "UpdateUserDetails";
+}
+@section loginnav{
+    <a href="@Url.Action("login","Home")" class="btn btn-outline-light">Login</a>
+}
+@section logout{
+    <a href="@Url.Action("Login","Home")" class="btn btn-outline-light">Logout</a>
+}
+<div class=" bg-image" id="background_signup">
+
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="card-body p-5  ">
+                            <h2 class="text-uppercase text-center mb-5 ">Update User</h2>
+                            @using (Html.BeginForm("UpdateUserDetails", "dashboard", FormMethod.Post, new { @class = "form" }))
+                            {
+                                @Html.ValidationSummary(true)
+
+                                <div class="form-outline mb-4">
+                                    @Html.LabelFor(m => m.FirstName, "First Name", new { @class = "text-black" })
+                                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control form-control-lg" })
+                                    @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    @Html.LabelFor(m => m.LastName, null, new { @class = "text-black" })
+                                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control form-control-lg" })
+                                    @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    @Html.LabelFor(m => m.Username, null, new { @class = "text-black" })
+                                    @Html.HiddenFor(m => m.Username)
+                                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control form-control-lg", @disabled = "disabled" })
+                                    @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    @Html.LabelFor(m => m.Email, null, new { @class = "text-black" })
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-lg" })
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-outline mb-4">
+                                    @Html.LabelFor(m => m.Gender, null, new { @class = "text-black" })
+                                    <div class="radio-inline">
+                                        @Html.RadioButtonFor(m => m.Gender, "Male")<span class="text-black">Male</span>
+                                        @Html.RadioButtonFor(m => m.Gender, "Female")<span class="text-black">Female</span>
+                                        @Html.RadioButtonFor(m => m.Gender, "Others")<span class="text-black">Others</span>
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <input type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" value="Update">
+                                </div>
+
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section validation{
+    <script src="~/Scripts/jquery-3.6.3.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script>
+        $.validator.unobtrusive.adapters.addBool("chckreq");
+        $.validator.addMethod("chckreq", function (value, element, param) {
+            var flag = $(element).prop('checked');
+            return flag;
+        });
+    </script>
+    <script>
+        $.validator.unobtrusive.adapters.addBool("exist");
+        $.validator.addMethod("exist", function (value, element, param) {
+            var flag1 = $(element).prop('checked');
+            console.log(flag1);
+            return flag1;
+        });
+    </script>
+}
+
